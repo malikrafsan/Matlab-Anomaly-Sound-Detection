@@ -22,7 +22,7 @@ for a = 1:length(machine_type)
             
             fileList = dir(dirpath);
             
-            for i = 1:7%length(fileList)
+            for i = 1:5%length(fileList)
                 if strcmp(fileList(i).name, '.') || strcmp(fileList(i).name, '..')
                     continue;
                 end
@@ -35,7 +35,15 @@ for a = 1:length(machine_type)
                 
                 f0 = pitch(audioIn,fs);
                 
-                %sound(audioIn(:,7),fs)
+                % Check if there is any zero value in the array
+                hasZero = any(f0 <= 1);
+                
+                % Display the result
+                if hasZero
+                    disp('The array contains at least one zero value.');
+                else
+                    disp('The array does not contain any zero value.');
+                end
                 
                 tiledlayout(2,1)
                 
